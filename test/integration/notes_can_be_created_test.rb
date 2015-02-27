@@ -7,7 +7,7 @@ class NotesCanBeCreatedTest < ActionDispatch::IntegrationTest
     assert_select("form")
     assert_difference('Note.count', 1) do
       Note.create(title: 'Do lots of stuff',
-          description: 'and much stuff there was to be done')
+          description: 'and there was much stuff to be done')
     end
   end
 end

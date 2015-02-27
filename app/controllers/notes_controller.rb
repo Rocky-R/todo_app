@@ -4,14 +4,25 @@ class NotesController < ApplicationController
   end
 
   def new
+    @note = Note.new
   end
 
   def create
+    @note = Note.new(note_params)
+    if @note.save
+      redirect_to notes_path
+    end
   end
 
   def update
   end
 
   def destroy
+  end
+
+  private
+
+  def note_params
+    params.require(:note).permit(:title, :description, :order, :complete)
   end
 end
