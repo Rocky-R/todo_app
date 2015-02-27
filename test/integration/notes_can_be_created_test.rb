@@ -1,8 +1,9 @@
 require 'test_helper'
 
-class NotesCanBeCreatedTest < ActionDispatch::IntegrationTest
+class NotesCanBeCreatedAndDestroyedTest < ActionDispatch::IntegrationTest
   test "notes can be created" do
     get root_path
+    assert_select("a[data-confirm]")
     get new_note_path
     assert_select("form")
     assert_difference('Note.count', 1) do

@@ -4,6 +4,7 @@
   <% @notes.each do |note| %>
   <li><%= note.title %></li>
   <p><%= note.description %></p>
+  <span><%= link_to 'Delete Note', note, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   <% end %>
 </ul>
 
