@@ -1,18 +1,18 @@
 <h1>To Do List</h1>
 
-<ul>
-  <% @notes.each do |note| %>
-    <%= form_for note do |f|%>
-      <%= f.hidden_field :id, class: "rails-id" %>
-      <%=f.check_box :complete, class: "complete_checkboxes" %>
-    <% end %>
-  <li><%= note.title %></li>
-  <p><%= note.description %></p>
-  <span>Due on: <%= note.due_on.strftime("%a-%b-%d%l:%M%p") %></span>
-  <span><%= link_to 'Edit', edit_note_path(note) %></span> |
-  <span><%= link_to 'Delete Note', note, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-  <% end %>
-</ul>
+<% @notes.each do |note| %>
+  <%= form_for note do |f|%>
+    <%= f.hidden_field :id, class: "rails-id" %>
+    <div class="column">
 
+      <div class="portlet">
+        <div class="portlet-header"><%=f.check_box :complete, class: "complete_checkboxes" %>
+          <%= note.title %></div>
+        <div class="portlet-content"><%= note.description %></div>
+      </div>
+
+    </div>
+  <% end %>
+<% end %>
 
 <%= link_to 'New Note', new_note_path %>
