@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  $('.complete_checkboxes').on("click", function() {
+    var checked;
+    var val = $(this).prevAll(".rails-id").val();
+    if ($(this).is(':checked')) {
+      checked = true;
+    } else {
+      checked = false;
+    }
+    $.ajax({
+      type: "PATCH",
+      url: "/notes/" + val + "/update_complete",
+      data: {complete: checked}
+   });
+ });
+});

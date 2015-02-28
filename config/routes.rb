@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :notes
+  resources :notes do
+    member do
+      patch 'update_complete'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
