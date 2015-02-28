@@ -10,4 +10,12 @@ class NotesControllerTest < ActionController::TestCase
     get :index
     assert_select("a[href=?]", edit_note_path(Note.first))
   end
+
+  test "notes can have a due date" do
+
+  end
+
+  test "notes can be completed" do
+
+  end
 end

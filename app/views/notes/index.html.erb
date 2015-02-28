@@ -2,8 +2,9 @@
 
 <ul>
   <% @notes.each do |note| %>
-  <li><%= note.title %></li>
+  <div><%= check_box_tag :complete %></div><li><%= note.title %></li>
   <p><%= note.description %></p>
+  <span>Due on: <%= note.due_on.strftime("%a-%b-%d%l:%M%p") %></span>
   <span><%= link_to 'Edit', edit_note_path(note) %></span> |
   <span><%= link_to 'Delete Note', note, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   <% end %>
