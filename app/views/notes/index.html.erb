@@ -22,6 +22,7 @@
       <%= form_for note do |f|%>
       <tr data-item-id=<%= "#{note.id}" %> class="item">
         <td>
+          <%= f.hidden_field :id, class: "rails-id" %>
           <%=f.check_box :complete, class: "complete_checkboxes" %>
         </td>
         <td>
@@ -34,11 +35,10 @@
           <%= note.due_on.strftime("%a-%b-%d%l:%M%p") if note.due_on %>
         </td>
         <td>
-          <%= link_to 'Delete Note', note, method: :delete, data: { confirm:
+          <%= link_to 'Delete', note, method: :delete, data: { confirm:
               'Are you sure?' }, :class => 'btn btn-default pull-right' %>
-        </td>
-        <td>
-          <%= link_to 'Edit', edit_note_path(note), :class => 'btn btn-default pull-right' %>
+          <%= link_to 'Edit', edit_note_path(note), :class =>
+              'btn btn-default pull-right' %>
         </td>
       </tr>
       <% end %>

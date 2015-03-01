@@ -5,4 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Note.create(title: "Need to do stuff", description: "do stuff nao")
+Note.create(title: "Need to do stuff", description: "do stuff nao", row_order: 999)
