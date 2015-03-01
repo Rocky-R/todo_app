@@ -1,20 +1,49 @@
 <h1>To Do List</h1>
 
-<% @notes.each do |note| %>
-  <%= form_for note do |f|%>
-    <%= f.hidden_field :id, class: "rails-id" %>
-    <ul class="sortable">
-      <li class="ui-state-default">
-        <%= note.order %>
-        <%=f.check_box :complete, class: "complete_checkboxes" %>
-        <%= note.title %>  |
-        <%= note.description %>
-        <span>Due on: <%= note.due_on.strftime("%a-%b-%d%l:%M%p") %></span>
-        <span><%= link_to 'Edit', edit_note_path(note) %></span> |
-        <span><%= link_to 'Delete Note', note, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-      </li>
-    </ul>
-  <% end %>
-<% end %>
+<table class="table table-bordered table-striped" id="sortable">
+  <thead>
+    <tr>
+      <th>
+        Complete
+      </th>
+      <th>
+        Note
+      </th>
+      <th>
+        Details
+      </th>
+      <th>
+        Due On
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notes.each do |note| %>
+      <%= form_for note do |f|%>
+      <tr data-item-id=<%= "#{note.id}" %> class="item">
+        <td>
+          <%=f.check_box :complete, class: "complete_checkboxes" %>
+        </td>
+        <td>
+          <%= note.title %>
+        </td>
+        <td>
+          <%= note.description %>
+        </td>
+        <td>
+          <%= note.due_on.strftime("%a-%b-%d%l:%M%p") if note.due_on %>
+        </td>
+        <td>
+          <%= link_to 'Delete Note', note, method: :delete, data: { confirm:
+              'Are you sure?' }, :class => 'btn btn-default pull-right' %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_note_path(note), :class => 'btn btn-default pull-right' %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'New Note', new_note_path %>

@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="field">
+    <%= f.hidden_field :row_order, :value => 999 %>
+  </div>
+  <div class="field">
     <%= f.label :complete %><br>
     <%= f.check_box :complete %>
   </div>
@@ -25,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :due_on %><br>
-    <%= f.datetime_select :due_on, include_blank: true, ampm: true %>
+    <%= f.datetime_select :due_on, ampm: true %>
   </div>
   <div class="actions">
     <%= f.submit %>

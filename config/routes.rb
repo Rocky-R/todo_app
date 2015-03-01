@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :notes do
+    patch :update_row_order, on: :collection
     member do
       patch 'update_complete'
     end

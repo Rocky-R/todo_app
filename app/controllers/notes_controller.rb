@@ -2,7 +2,14 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :update_complete, :destroy]
 
   def index
-    @notes = Note.all
+    @notes = Note.rank(:row_order).all
+  end
+
+  def update_row_order
+    @note = Note.find_by_id(params[:id])
+    Note.update(@note.id, row_order: params[:row_order])
+
+    render nothing: true # this is a POST action, updates sent via AJAX, no view rendered
   end
 
   def new
@@ -43,6 +50,7 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :description, :order, :complete, :due_on)
+    params.require(:note).permit(:title, :description,
+        :complete, :due_on, :row_order)
   end
 end
