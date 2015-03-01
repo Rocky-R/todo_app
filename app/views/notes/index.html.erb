@@ -4,9 +4,6 @@
   <thead>
     <tr>
       <th>
-        Complete
-      </th>
-      <th>
         Note
       </th>
       <th>
@@ -15,16 +12,15 @@
       <th>
         Due On
       </th>
+      <th>
+        Complete - Edit - Delete
+      </th>
     </tr>
   </thead>
   <tbody>
     <% @notes.each do |note| %>
       <%= form_for note do |f|%>
       <tr data-item-id=<%= "#{note.id}" %> class="item">
-        <td>
-          <%= f.hidden_field :id, class: "rails-id" %>
-          <%=f.check_box :complete, class: "complete_checkboxes" %>
-        </td>
         <td>
           <%= note.title %>
         </td>
@@ -35,6 +31,8 @@
           <%= note.due_on.strftime("%a-%b-%d%l:%M%p") if note.due_on %>
         </td>
         <td>
+          <%= f.hidden_field :id, class: "rails-id" %>
+          <%=f.check_box :complete, class: "complete_checkboxes" %>
           <%= link_to 'Delete', note, method: :delete, data: { confirm:
               'Are you sure?' }, :class => 'btn btn-default pull-right' %>
           <%= link_to 'Edit', edit_note_path(note), :class =>
