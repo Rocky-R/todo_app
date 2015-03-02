@@ -3,11 +3,11 @@
 one:
   title: MyString
   description: MyText
-  order: 1
+  row_order: 1
   complete: false
 
 two:
   title: MyString
   description: MyText
-  order: 1
+  row_order: 1
   complete: false
